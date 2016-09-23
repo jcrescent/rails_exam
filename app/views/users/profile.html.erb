@@ -1,0 +1,29 @@
+<a href="/users">All Users</a>
+<a href="/logout">Logout</a>
+<h1>Hi <%= @user.name%></h1>
+<p>Here is your profile description</p>
+<div><%=@user.description%></div>
+<p>Your Professional Network:</p>
+<div>
+<% @connections.each do |connection| %> 
+<p><a href="/users/<%=connection.id%>"><%=connection.name%></a></p>
+<%end%>
+</div>
+
+<p>Invitations</p>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @connections.each do |x| %>
+		<tr>
+			<td><a href="/users/<%=x.id%>"><%=x.name%></a></td>
+			<td><a href="">Accept</a> <a href="/destroy/<%=x.id%>/connection" data-method='delete'>Ignore</a></td>
+		</tr>
+	<%end%>
+	</tbody>
+</table>

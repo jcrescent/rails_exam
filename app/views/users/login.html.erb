@@ -1,0 +1,28 @@
+<h1>Register</h1>
+<% if notice %>
+	<% notice.each do |n| %>
+		<p><%=n%></p>
+	<%end%>
+<%end%>
+<form action="/users/create" method="post">
+<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+	Name: <input type="text" name="new_user[name]">
+	Email: <input type="text" name="new_user[email]">
+	Password:<input type="password" name="new_user[password]">
+	Confirm password: <input type="password" name="new_user[password_confirmation]">
+	Description: <textarea name=new_user[description]></textarea>
+	<input type="submit" name="Submit" value="Register">
+</form>
+
+<h1>Log In</h1>
+<% if alert %>
+	<% alert.each do |a| %>
+		<p><%=a%></p>
+	<%end%>
+<%end%>
+<form action='/users/validate' method='post'>
+	<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+	Email: <input type="text" name="email">
+	Password: <input type="password" name="password">
+	<input type="submit" name="Submit" value="Log In">
+</form>

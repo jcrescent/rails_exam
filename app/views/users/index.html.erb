@@ -1,0 +1,27 @@
+<a href="/profile">My Profile</a>
+<a href="/logout">Logout</a>
+<h3>Users to connect with:</h3>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @users.each do |x| %>
+	  <% if x.id != @current_user.id and !@current_user.other_users.include?(x) %> 
+		<tr>
+			<td><a href="/users/<%=x.id%>"><%=x.name%></a></td>
+			<td>
+				<form action="/create/connection" method="post">
+					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+					<input type="hidden" name="other" value="<%=x.id%>">
+					<input type="submit" name="Submit" value="Connect">
+				</form>
+			</td>
+		</tr>
+		<%end%>
+	<%end%>
+	</tbody>
+</table>
